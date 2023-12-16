@@ -4,20 +4,45 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Book {
-    public String name;
+
+abstract class Item {
+
+    public String title;
+    public String uniqueID;
+    private boolean isBorrowed = false;
+    public String borrowItem(){
+        if(!isBorrowed){
+            this.isBorrowed=true;
+            return "OK";
+        } else {
+            return "ITEM ALREADY BORROWED";
+        }
+        }
+        public String returnItem(){
+            if(isBorrowed){
+                this.isBorrowed=false;
+                return "OK";
+            } else {
+                return "ITEM ALREADY IN LIBRARY";
+            }
+    }
+    };
+
+class Book extends Item {
+
     public String author;
-    public String isbn;
     public int year;
 
+
     public Book(String nm, String auth, String num, int yr){
-        this.name = nm;
+        this.title = nm;
         this.author = auth;
-        this.isbn = num;
+        this.uniqueID = num;
         this.year = yr;
     }
+
     public String getInfo(){
-        String fullInfo = this.name + " | " + this.author + " | " + this.isbn + " | " + this.year;
+        String fullInfo = this.title + " | " + this.author + " | " + this.uniqueID + " | " + this.year;
         return fullInfo;
     }
 }
@@ -80,7 +105,7 @@ public class Main {
                     boolean nobooksfound = true;
 
                     for(int i = 0; i < library.size();i++){
-                        if(library.get(i).name.toLowerCase().contains(readString.toLowerCase())) {
+                        if(library.get(i).title.toLowerCase().contains(readString.toLowerCase())) {
                             System.out.println(">------------->");
                             System.out.println(library.get(i).getInfo());
                             nobooksfound = false;
@@ -98,7 +123,7 @@ public class Main {
                     boolean nobooksfound = true;
 
                     for(int i = 0; i < library.size();i++){
-                        if(library.get(i).isbn.equals(readString)) {
+                        if(library.get(i).uniqueID.equals(readString)) {
                             System.out.println(">------------->");
                             System.out.print(library.get(i).getInfo());
                             System.out.println(" | DELETED");
