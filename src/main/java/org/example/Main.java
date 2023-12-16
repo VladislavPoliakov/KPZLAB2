@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -45,7 +46,7 @@ class  DVD extends Item{
 class Patron{
     public String name;
     public String patronID;
-    public List<Item> borrowedItems;
+    public ArrayList<Item> borrowedItems;
 
     public String borrowItem(Item toBorrow){
         boolean temp = toBorrow.borrowItem();
@@ -98,8 +99,8 @@ abstract interface IManageable{
 }
 
 class Library implements IManageable{
-    public List<Item> items;
-    public List<Patron> patrons;
+    public ArrayList<Item> items = new ArrayList<Item>();
+    public ArrayList<Patron> patrons = new ArrayList<Patron>();
     @Override
     public void addItem(Item toAdd) {
         items.add(toAdd);
@@ -292,6 +293,41 @@ public class Main {
                     break;
                 }
                 case 5: {
+                    String patronidTemp;
+                    String itemidTemp;
+                    System.out.println("Enter patronID:");
+                    readString = console.nextLine();
+                    patronidTemp= readString;
+                    System.out.println("Enter item ID/ISBN:");
+                    readString = console.nextLine();
+                    patronidTemp= readString;
+                    Item itemTemp = null;
+                    Patron patronTemp = null;
+                    boolean nofound = true;
+                    for(int i = 0; i < library.items.size();i++){
+                        if(library.items.get(i).uniqueID.equals(readString)) {
+                            itemTemp = library.items.get(i);
+                            nofound = false;
+                        }
+                    }
+                    if(nofound){
+                        System.out.println("NO SUCH ITEM");
+                        break;
+                    }
+                    nofound = true;
+                    for(int i = 0; i < library.items.size();i++){
+                        if(library.patrons.get(i).patronID.equals(readString)) {
+                            patronTemp = library.patrons.get(i);
+                            nofound = false;
+                        }
+                    }
+                    if(nofound){
+                        System.out.println("NO SUCH PATRON");
+                        break;
+                    }
+
+                    library.returnItem(patronTemp,itemTemp);
+
                     break;
                 }
                 case 6: {
