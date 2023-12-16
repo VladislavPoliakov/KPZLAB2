@@ -1,7 +1,7 @@
 package org.example;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -107,10 +107,14 @@ class Library implements IManageable{
 
     @Override
     public void listAllBorrowed() {
-        for(int i = 0; i<items.size(); i++){
-            if(items.get(i).isBorrowed == true){
-                System.out.println(items.get(i).getInfo());
-            }
+        for(int i = 0; i<patrons.size(); i++){
+
+                for(int j = 0; j<patrons.get(i).borrowedItems.size(); j++){
+                    System.out.print(patrons.get(i).name);
+                    System.out.print(" | ");
+                    System.out.println(patrons.get(i).borrowedItems.get(j).getInfo());
+                }
+
         }
     }
 
@@ -150,11 +154,81 @@ public class Main {
         Scanner console = new Scanner(System.in);
         while(!menuExt){
             System.out.println("MENU. ENTER NUMBER TO MAKE:");
-
-
+            System.out.println("1.Add item to library");
+            System.out.println("2.Remove item from library by ID");
+            System.out.println("3.Register new patron");
+            System.out.println("4.Borrow item to patron");
+            System.out.println("5.Return item to library");
+            System.out.println("6.Show all available");
+            System.out.println("7.Show all borrowed");
             readInt = console.nextInt();
             readString = console.nextLine();
             switch (readInt){
+                case 1: {
+                    System.out.println("What item do you want to add?");
+                    System.out.println("1.Book");
+                    System.out.println("2.DVD");
+                    readInt = console.nextInt();
+                    readString = console.nextLine();
+                    if(readInt==1) {
+                        String nameTemp;
+                        String authorTemp;
+                        String isbnTemp;
+                        int yearTemp;
+                        System.out.println("Enter name:");
+                        readString = console.nextLine();
+                        nameTemp = readString;
+                        System.out.println("Enter author:");
+                        readString = console.nextLine();
+                        authorTemp = readString;
+                        System.out.println("Enter ISBN:");
+                        readString = console.nextLine();
+                        isbnTemp = readString;
+                        System.out.println("Enter year:");
+                        readInt = console.nextInt();
+                        readString = console.nextLine();
+                        yearTemp = readInt;
+                        library.addItem(new Book(nameTemp, authorTemp, isbnTemp, yearTemp));
+                    }
+                    else if(readInt==2){
+                        String nameTemp;
+                        String idTemp;
+                        int durationTemp;
+                        System.out.println("Enter name:");
+                        readString = console.nextLine();
+                        nameTemp = readString;
+                        System.out.println("Enter ID:");
+                        readString = console.nextLine();
+                        idTemp = readString;
+                        System.out.println("Enter year:");
+                        readInt = console.nextInt();
+                        readString = console.nextLine();
+                        durationTemp = readInt;
+                        library.addItem(new DVD(nameTemp,idTemp, durationTemp));
+                    }else{
+                        System.out.println("INCORRECT");
+                    }
+                    break;
+                }
+                case 2: {
+                    break;
+                }
+                case 3: {
+                    break;
+                }
+                case 4: {
+                    break;
+                }
+                case 5: {
+                    break;
+                }
+                case 6: {
+                    break;
+                }
+                case 7: {
+                    break;
+                }
+
 
                 default: {
                     System.out.println("ERROR! INCORRECT INPUT");
