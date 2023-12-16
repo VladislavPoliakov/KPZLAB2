@@ -102,6 +102,17 @@ class Library implements IManageable{
 
     @Override
     public void removeItem(Item toRemove) {
+
+        if(toRemove.isBorrowed==true){
+        for(int i = 0; i<patrons.size(); i++){
+
+            for(int j = 0; j<patrons.get(i).borrowedItems.size(); j++){
+                if(patrons.get(i).borrowedItems.contains(toRemove)){
+                    patrons.get(i).borrowedItems.remove(toRemove);
+                }
+            }
+
+        }}
         items.remove(toRemove);
     }
 
@@ -211,6 +222,19 @@ public class Main {
                     break;
                 }
                 case 2: {
+                    System.out.println("Enter ISBN or ID");
+                    readString = console.nextLine();
+                    boolean noitemsfound = true;
+
+                    for(int i = 0; i < library.items.size();i++){
+                        if(library.items.get(i).uniqueID.equals(readString)) {
+                            library.removeItem(library.items.get(i));
+                            noitemsfound = false;
+                        }
+                    }
+                    if(noitemsfound){
+                        System.out.println("NO ITEMS DELETED");
+                    }
                     break;
                 }
                 case 3: {
