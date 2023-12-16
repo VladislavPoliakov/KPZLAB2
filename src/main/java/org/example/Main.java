@@ -27,7 +27,14 @@ abstract class Item {
             }
     }
     };
-
+class  DVD extends Item{
+    public int duration;
+    public DVD(String nm, String num, int dur){
+        this.title = nm;
+        this.uniqueID = num;
+        this.duration = dur;
+    }
+}
 class Book extends Item {
 
     public String author;
