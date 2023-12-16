@@ -10,7 +10,7 @@ abstract class Item {
 
     public String title;
     public String uniqueID;
-    private boolean isBorrowed = false;
+    public boolean isBorrowed = false;
     public boolean borrowItem(){
         if(!isBorrowed){
             this.isBorrowed=true;
@@ -27,6 +27,7 @@ abstract class Item {
                 return false;
             }
     }
+    public abstract String getInfo();
     };
 class  DVD extends Item{
     public int duration;
@@ -34,6 +35,11 @@ class  DVD extends Item{
         this.title = nm;
         this.uniqueID = num;
         this.duration = dur;
+    }
+    @Override
+    public String getInfo(){
+        String fullInfo = this.title + " | " + this.duration+ " | " + this.uniqueID;
+        return fullInfo;
     }
 }
 class Patron{
@@ -72,19 +78,64 @@ class Book extends Item {
         this.uniqueID = num;
         this.year = yr;
     }
-
+    @Override
     public String getInfo(){
         String fullInfo = this.title + " | " + this.author + " | " + this.uniqueID + " | " + this.year;
         return fullInfo;
     }
 }
 
-interface IManageable{
+abstract interface IManageable{
     public void addItem(Item toAdd);
     public void removeItem(Item toRemove);
     public void listAllBorrowed();
     public void listAllAvailable();
 }
+
+class Library implements IManageable{
+    public List<Item> items;
+    public List<Patron> patrons;
+    @Override
+    public void addItem(Item toAdd) {
+        items.add(toAdd);
+    }
+
+    @Override
+    public void removeItem(Item toRemove) {
+        items.remove(toRemove);
+    }
+
+    @Override
+    public void listAllBorrowed() {
+        for(int i = 0; i<items.size(); i++){
+            if(items.get(i).isBorrowed == true){
+                System.out.println(items.get(i).getInfo());
+            }
+        }
+    }
+
+    @Override
+    public void listAllAvailable() {
+        for(int i = 0; i<items.size(); i++){
+            if(items.get(i).isBorrowed == false){
+                System.out.println(items.get(i).getInfo());
+            }
+        }
+    }
+
+    public void registerPatron(Patron toRegister){
+        patrons.add(toRegister);
+    }
+    public void lendItem(Patron client, Item toBorrow){
+        System.out.println(client.borrowItem(toBorrow));
+    }
+    public void returnItem(Patron client, Item toReturn){
+        System.out.println(client.returnItem(toReturn));
+    }
+    }
+
+
+
 public class Main {
     public static void main(String[] args) throws IOException {
         ArrayList<Book> library = new ArrayList<Book>();
