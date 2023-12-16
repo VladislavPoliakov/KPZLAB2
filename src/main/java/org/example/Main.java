@@ -244,19 +244,51 @@ public class Main {
                 }
                 case 3: {
                     String nameTemp;
-
                     String idTemp;
-                    int yearTemp;
                     System.out.println("Enter name:");
                     readString = console.nextLine();
                     nameTemp = readString;
-                    System.out.println("Enter author:");
+                    System.out.println("Enter patronID:");
                     readString = console.nextLine();
                     idTemp = readString;
                     library.registerPatron(new Patron(nameTemp,idTemp));
                     break;
                 }
                 case 4: {
+                    String patronidTemp;
+                    String itemidTemp;
+                    System.out.println("Enter patronID:");
+                    readString = console.nextLine();
+                    patronidTemp= readString;
+                    System.out.println("Enter item ID/ISBN:");
+                    readString = console.nextLine();
+                    patronidTemp= readString;
+                    Item itemTemp = null;
+                    Patron patronTemp = null;
+                    boolean nofound = true;
+                    for(int i = 0; i < library.items.size();i++){
+                        if(library.items.get(i).uniqueID.equals(readString)) {
+                            itemTemp = library.items.get(i);
+                            nofound = false;
+                        }
+                    }
+                    if(nofound){
+                        System.out.println("NO SUCH ITEM");
+                        break;
+                    }
+                    nofound = true;
+                    for(int i = 0; i < library.items.size();i++){
+                        if(library.patrons.get(i).patronID.equals(readString)) {
+                            patronTemp = library.patrons.get(i);
+                            nofound = false;
+                        }
+                    }
+                    if(nofound){
+                        System.out.println("NO SUCH PATRON");
+                        break;
+                    }
+
+                    library.lendItem(patronTemp,itemTemp);
                     break;
                 }
                 case 5: {
