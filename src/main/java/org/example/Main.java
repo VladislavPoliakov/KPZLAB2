@@ -373,4 +373,159 @@ public class Main {
         }
     }
 }
+/*MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+1
+What item do you want to add?
+1.Book
+2.DVD
+1
+Enter name:
+Example book
+Enter author:
+Example author
+Enter ISBN:
+1313000013130
+Enter year:
+2023
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+1
+What item do you want to add?
+1.Book
+2.DVD
+2
+Enter name:
+Example DVD
+Enter ID:
+00005
+Enter duration:
+13
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+6
+Head first. Java | Kathy Sierra | 9785699545742 | 2003
+Effective Java | Joshua Bloch | 9780132345286 | 2008
+Java Concurency in Practice | Brian Goetz | 9780321349606 | 2006
+java 8 Pocket guide | Robert Liguory | 9785845920508 | 2015
+Java Course on DVD | 150 | 00001
+Fun disc | 17 | 00002
+Music for soul DVD | 842 | 00003
+Java Extended DVD | 151 | 00004
+Example book | Example author | 1313000013130 | 2023
+Example DVD | 13 | 00005
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+7
+NOT FOUND
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+3
+Enter name:
+Mileena
+Enter patronID:
+000000005
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+4
+Enter item ID/ISBN:
+00005
+Enter patronID:
+000000005
+OK
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+7
+Mileena | 000000005 | Example DVD | 13 | 00005
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+4
+Enter item ID/ISBN:
+1313000013130
+Enter patronID:
+000000001
+OK
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+7
+Alexandr | 000000001 | Example book | Example author | 1313000013130 | 2023
+Mileena | 000000005 | Example DVD | 13 | 00005
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
+5
+Enter ID/ISBN:
+00005
+Enter item patronID:
+000000005
+OK
+MENU. ENTER NUMBER TO MAKE:
+1.Add item to library
+2.Remove item from library by ID
+3.Register new patron
+4.Borrow item to patron
+5.Return item to library
+6.Show all available
+7.Show all borrowed
 
+
+ */
