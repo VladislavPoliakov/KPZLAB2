@@ -65,6 +65,11 @@ class Patron{
             return "UNABLE TO RETURN";
         }
     }
+
+    public Patron(String nm, String id){
+        this.name=nm;
+        this.patronID=id;
+    }
 }
 class Book extends Item {
 
@@ -238,6 +243,17 @@ public class Main {
                     break;
                 }
                 case 3: {
+                    String nameTemp;
+
+                    String idTemp;
+                    int yearTemp;
+                    System.out.println("Enter name:");
+                    readString = console.nextLine();
+                    nameTemp = readString;
+                    System.out.println("Enter author:");
+                    readString = console.nextLine();
+                    idTemp = readString;
+                    library.registerPatron(new Patron(nameTemp,idTemp));
                     break;
                 }
                 case 4: {
