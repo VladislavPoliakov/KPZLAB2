@@ -325,15 +325,16 @@ public class Main {
                         System.out.println("NO SUCH PATRON");
                         break;
                     }
-
                     library.returnItem(patronTemp,itemTemp);
 
                     break;
                 }
                 case 6: {
+                    library.listAllAvailable();
                     break;
                 }
                 case 7: {
+                    library.listAllBorrowed();
                     break;
                 }
 
