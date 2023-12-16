@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -10,20 +11,20 @@ abstract class Item {
     public String title;
     public String uniqueID;
     private boolean isBorrowed = false;
-    public String borrowItem(){
+    public boolean borrowItem(){
         if(!isBorrowed){
             this.isBorrowed=true;
-            return "OK";
+            return true;
         } else {
-            return "ITEM ALREADY BORROWED";
+            return false;
         }
         }
-        public String returnItem(){
+        public boolean returnItem(){
             if(isBorrowed){
                 this.isBorrowed=false;
-                return "OK";
+                return true;
             } else {
-                return "ITEM ALREADY IN LIBRARY";
+                return false;
             }
     }
     };
@@ -33,6 +34,30 @@ class  DVD extends Item{
         this.title = nm;
         this.uniqueID = num;
         this.duration = dur;
+    }
+}
+class Patron{
+    public String name;
+    public String patronID;
+    public List<Item> borrowedItems;
+
+    public String borrowItem(Item toBorrow){
+        boolean temp = toBorrow.borrowItem();
+        if(temp){
+            this.borrowedItems.add(toBorrow);
+            return "OK";
+        }else {
+            return "UNABLE TO BOOROW";
+        }
+    }
+    public String returnItem(Item toReturn){
+        boolean temp = toReturn.borrowItem();
+        if(temp){
+            this.borrowedItems.remove(toReturn);
+            return "OK";
+        }else {
+            return "UNABLE TO RETURN";
+        }
     }
 }
 class Book extends Item {
