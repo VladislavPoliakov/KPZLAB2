@@ -164,7 +164,15 @@ public class Main {
         library.addItem(new Book("Effective Java", "Joshua Bloch", "9780132345286", 2008));
         library.addItem(new Book("Java Concurency in Practice", "Brian Goetz", "9780321349606", 2006));
         library.addItem(new Book("java 8 Pocket guide", "Robert Liguory", "9785845920508", 2015));
-        //menu
+        library.addItem(new DVD("Java Course on DVD","00001", 150));
+        library.addItem(new DVD("Fun disc", "00002", 17));
+        library.addItem(new DVD("Music for soul DVD", "00003", 842));
+        library.addItem(new DVD("Java Extended DVD", "00004",151));
+        library.registerPatron(new Patron("Alexandr", "000000001"));
+        library.registerPatron(new Patron("Volodymyr", "000000002"));
+        library.registerPatron(new Patron("Eugene", "000000003"));
+        library.registerPatron(new Patron("Joshua", "000000004"));
+
         boolean menuExt = false;
         int readInt;
         String readString;
