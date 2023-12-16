@@ -46,7 +46,7 @@ class  DVD extends Item{
 class Patron{
     public String name;
     public String patronID;
-    public ArrayList<Item> borrowedItems;
+    public ArrayList<Item> borrowedItems = new ArrayList<Item>();
 
     public String borrowItem(Item toBorrow){
         boolean temp = toBorrow.borrowItem();
@@ -58,7 +58,7 @@ class Patron{
         }
     }
     public String returnItem(Item toReturn){
-        boolean temp = toReturn.borrowItem();
+        boolean temp = toReturn.returnItem();
         if(temp){
             this.borrowedItems.remove(toReturn);
             return "OK";
@@ -124,23 +124,39 @@ class Library implements IManageable{
 
     @Override
     public void listAllBorrowed() {
-        for(int i = 0; i<patrons.size(); i++){
-
-                for(int j = 0; j<patrons.get(i).borrowedItems.size(); j++){
+        boolean notfound = true;
+        if(patrons.isEmpty()==false){
+        for(int i = 0; i<patrons.size(); i++) {
+            if (patrons.get(i).borrowedItems.isEmpty() == false) {
+                for (int j = 0; j < patrons.get(i).borrowedItems.size(); j++) {
                     System.out.print(patrons.get(i).name);
                     System.out.print(" | ");
+                    System.out.print(patrons.get(i).patronID);
+                    System.out.print(" | ");
                     System.out.println(patrons.get(i).borrowedItems.get(j).getInfo());
+                    notfound = false;
                 }
+            }
+        }
 
+        }
+        if(notfound){
+            System.out.println("NOT FOUND");
         }
     }
 
     @Override
     public void listAllAvailable() {
+        boolean notfound = true;
+        if(items.isEmpty()==false){
         for(int i = 0; i<items.size(); i++){
             if(items.get(i).isBorrowed == false){
                 System.out.println(items.get(i).getInfo());
+                notfound = false;
             }
+        }}
+        if(notfound){
+            System.out.println("NOT FOUND");
         }
     }
 
@@ -225,7 +241,7 @@ public class Main {
                         System.out.println("Enter ID:");
                         readString = console.nextLine();
                         idTemp = readString;
-                        System.out.println("Enter year:");
+                        System.out.println("Enter duration:");
                         readInt = console.nextInt();
                         readString = console.nextLine();
                         durationTemp = readInt;
@@ -266,9 +282,6 @@ public class Main {
                 case 4: {
                     String patronidTemp;
                     String itemidTemp;
-                    System.out.println("Enter patronID:");
-                    readString = console.nextLine();
-                    patronidTemp= readString;
                     System.out.println("Enter item ID/ISBN:");
                     readString = console.nextLine();
                     patronidTemp= readString;
@@ -285,8 +298,12 @@ public class Main {
                         System.out.println("NO SUCH ITEM");
                         break;
                     }
+                    System.out.println("Enter patronID:");
+                    readString = console.nextLine();
+                    patronidTemp= readString;
+
                     nofound = true;
-                    for(int i = 0; i < library.items.size();i++){
+                    for(int i = 0; i < library.patrons.size();i++){
                         if(library.patrons.get(i).patronID.equals(readString)) {
                             patronTemp = library.patrons.get(i);
                             nofound = false;
@@ -303,10 +320,7 @@ public class Main {
                 case 5: {
                     String patronidTemp;
                     String itemidTemp;
-                    System.out.println("Enter patronID:");
-                    readString = console.nextLine();
-                    patronidTemp= readString;
-                    System.out.println("Enter item ID/ISBN:");
+                    System.out.println("Enter ID/ISBN:");
                     readString = console.nextLine();
                     patronidTemp= readString;
                     Item itemTemp = null;
@@ -322,8 +336,12 @@ public class Main {
                         System.out.println("NO SUCH ITEM");
                         break;
                     }
+                    System.out.println("Enter item patronID:");
+                    readString = console.nextLine();
+                    patronidTemp= readString;
+
                     nofound = true;
-                    for(int i = 0; i < library.items.size();i++){
+                    for(int i = 0; i < library.patrons.size();i++){
                         if(library.patrons.get(i).patronID.equals(readString)) {
                             patronTemp = library.patrons.get(i);
                             nofound = false;
