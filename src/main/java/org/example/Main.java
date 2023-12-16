@@ -78,6 +78,13 @@ class Book extends Item {
         return fullInfo;
     }
 }
+
+interface IManageable{
+    public void addItem(Item toAdd);
+    public void removeItem(Item toRemove);
+    public void listAllBorrowed();
+    public void listAllAvailable();
+}
 public class Main {
     public static void main(String[] args) throws IOException {
         ArrayList<Book> library = new ArrayList<Book>();
